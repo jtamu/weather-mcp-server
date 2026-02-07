@@ -16,4 +16,5 @@ dev = []
 [tool.uv.workspace]
 members = [
     "weather",
+    "mcp-client",
 ]
