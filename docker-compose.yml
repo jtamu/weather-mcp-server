@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: weather-mcp-server
+    volumes:
+      - .:/app
+      - /app/.venv
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    # ports:
+    #   - "8000:8000"  # 必要に応じてポートを公開
+    stdin_open: true
+    tty: true

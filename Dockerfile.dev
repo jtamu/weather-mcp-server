@@ -1,0 +1,25 @@
+# Development Dockerfile with hot reload support
+FROM python:3.12-slim
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# Set working directory
+WORKDIR /app
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    UV_SYSTEM_PYTHON=1
+
+# Copy dependency files
+COPY pyproject.toml uv.lock* ./
+
+# Install dependencies (including dev dependencies)
+RUN uv sync --frozen
+
+# Copy application code
+COPY . .
+
+# Default command for development
+CMD ["python", "-m", "weather_mcp_server"]
