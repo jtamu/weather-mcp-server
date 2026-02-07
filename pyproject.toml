@@ -12,3 +12,8 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = []
+
+[tool.uv.workspace]
+members = [
+    "weather",
+]
